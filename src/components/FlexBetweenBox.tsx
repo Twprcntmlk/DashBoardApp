@@ -7,4 +7,4 @@ const FlexBetweenBox = styled(Box)({
   alignItems: "center",
 });
 
-export default FlexBetweenBox
+export default FlexBetweenBox;
