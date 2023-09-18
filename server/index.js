@@ -9,10 +9,10 @@ import mongoose from "mongoose";
 import kpiRoutes from "./routes/kpi.js";
 import productRoutes from "./routes/product.js";
 import transactionRoutes from "./routes/transaction.js";
-import KPI from "./models/KPI.js";
-import Product from "./models/Product.js";
-import Transaction from "./models/Transaction.js";
-import { kpis, products, transactions } from "./data/data.js";
+// import KPI from "./models/KPI.js";
+// import Product from "./models/Product.js";
+// import Transaction from "./models/Transaction.js";
+// import { kpis, products, transactions } from "./data/data.js";
 
 /* SERVER CONFIGURATION */
 dotenv.config();
@@ -23,7 +23,12 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
+// const corsOptions = {
+//   origin: "*",
+//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//   allowedHeaders: ["Content-Type", "Authorization"],
+// };
+app.use(cors()); //corsOptions
 
 /* ROUTES */
 app.use("/kpi", kpiRoutes);
