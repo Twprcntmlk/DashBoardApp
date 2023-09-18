@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /* eslint-disable no-undef */
 import express from "express";
 import bodyParser from "body-parser";
