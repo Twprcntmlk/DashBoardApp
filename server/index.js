@@ -15,7 +15,7 @@ import transactionRoutes from "./routes/transaction.js";
 // import Product from "./models/Product.js";
 // import Transaction from "./models/Transaction.js";
 // import { kpis, products, transactions } from "./data/data.js";
-
+const MONGODB_URI = process.env.MONGODB_URI;
 /* SERVER CONFIGURATION */
 dotenv.config();
 const app = express();
@@ -41,7 +41,7 @@ app.use("/transaction", transactionRoutes);
 const PORT = process.env.PORT || 9000;
 
 mongoose
-  .connect(process.env.MONGO_URL, {
+  .connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
