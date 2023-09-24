@@ -6,7 +6,7 @@ import {
   GetTransactionsResponse,
 } from "@/server/routes/types";
 import dotenv from "dotenv";
-
+import { connectToDatabase } from "@/lib/mongodb";
 dotenv.config();
 const MONGO_URL: string = process.env.MONGO_URL || "";
 // getKpis: build.query<Array<GetKpisResponse>, void>({
@@ -22,39 +22,31 @@ const MONGO_URL: string = process.env.MONGO_URL || "";
 //   providesTags: ["Transactions"],
 // Promise<GetKpisResponse>
 export async function getKpis() {
-  const client = new MongoClient(MONGO_URL);
-  try {
-    console.log("working");
-    await client.connect();
-    const collect = client.db("Dashboard").collection("kpis");
-    const results = await collect.find();
-    console.log(results);
-  } catch (error) {
-    console.error("Error fetching KPIs:", error);
-    throw error; // You might want to throw the error or handle it differently based on your application's needs.
-  } finally {
-    await client.close();
-  }
-  // const collect = client.db("Dashboard").collection("kpis");
-
-  // const results = await collect.find().toArray();
-
-  // const formattedResults: GetKpisResponse[] = results.map((doc) => ({
-  //   id: doc._id.toHexString(),
-  //   _id: doc._id.toHexString(),
-  //   __v: doc.__v,
-  //   totalProfit: doc.totalProfit,
-  //   totalRevenue: doc.totalRevenue,
-  //   totalExpenses: doc.totalExpenses,
-  //   expensesByCategory: doc.expensesByCategory,
-  //   monthlyData: doc.monthlyData,
-  //   dailyData: doc.dailyData,
-  //   createdAt: doc.createdAt,
-  //   updatedAt: doc.updatedAt,
-  // }));
-  // console.log(formattedResults);
-  // return formattedResults;
+  const { database } = await connectToDatabase();
+  const collection = database.collection("kpis");
+  const results = await collection.find().toArray();
+  return results;
 }
+// const collect = client.db("Dashboard").collection("kpis");
+
+// const results = await collect.find().toArray();
+
+// const formattedResults: GetKpisResponse[] = results.map((doc) => ({
+//   id: doc._id.toHexString(),
+//   _id: doc._id.toHexString(),
+//   __v: doc.__v,
+//   totalProfit: doc.totalProfit,
+//   totalRevenue: doc.totalRevenue,
+//   totalExpenses: doc.totalExpenses,
+//   expensesByCategory: doc.expensesByCategory,
+//   monthlyData: doc.monthlyData,
+//   dailyData: doc.dailyData,
+//   createdAt: doc.createdAt,
+//   updatedAt: doc.updatedAt,
+// }));
+// console.log(formattedResults);
+// return formattedResults;
+
 //  console.log(getKpis())
 // router.get("/kpis", async (req, res) => {
 //   try {

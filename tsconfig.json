@@ -20,6 +20,8 @@
     "jsx": "react-jsx",
     "types": ["vite/client"]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/lib/mongodb.ts"],
+  "references": [{ "path": "./tsconfig.node.json" }],
+  "typeRoots": ["./types", "./node_modules/@types"]
+
 }

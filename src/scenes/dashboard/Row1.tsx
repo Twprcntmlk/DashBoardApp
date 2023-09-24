@@ -17,8 +17,6 @@ import {
   Tooltip,
   Area,
 } from "recharts";
-import { getKpis } from "@/server/routes/kpi";
-import handler from "@/api/wrong";
 
 
 type RevenueExpensesItem = {
@@ -29,8 +27,7 @@ type RevenueExpensesItem = {
 
 const Row1 = () => {
   // const { palette } = useTheme();
-  const data = handler;
-  console.log(data);
+
   // const revenue = useMemo(() => {
   //   return (
   //     data &&
