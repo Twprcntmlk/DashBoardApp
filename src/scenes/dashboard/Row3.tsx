@@ -1,11 +1,11 @@
 import BoxHeaderBox from "@/components/BoxHeaderBox";
 import DashBoardBox from "@/components/DashBoardBox";
 import FlexBetweenBox from "@/components/FlexBetweenBox";
-import {
-  useGetKpisQuery,
-  useGetProductsQuery,
-  useGetTransactionsQuery,
-} from "@/state/api";
+// import {
+//   useGetKpisQuery,
+//   useGetProductsQuery,
+//   useGetTransactionsQuery,
+// } from "@/state/api";
 import { Box, Typography, useTheme } from "@mui/material";
 import { DataGrid, GridCellParams } from "@mui/x-data-grid";
 import React, { useMemo } from "react";
@@ -15,9 +15,9 @@ const Row3 = () => {
   const { palette } = useTheme();
   const pieColors = [palette.primary[800], palette.primary[500]];
 
-  const { data: kpiData } = useGetKpisQuery();
-  const { data: productData } = useGetProductsQuery();
-  const { data: transactionData } = useGetTransactionsQuery();
+  // const { data: kpiData } = useGetKpisQuery();
+  // const { data: productData } = useGetProductsQuery();
+  // const { data: transactionData } = useGetTransactionsQuery();
 
   const pieChartData = useMemo(() => {
     if (kpiData) {

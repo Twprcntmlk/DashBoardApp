@@ -6,11 +6,30 @@ import {
 import Row1 from "./Row1";
 import Row2 from "./Row2";
 import Row3 from "./Row3";
+import { useState, useEffect } from "react";
 
 type Props = unknown;
 //props: Props
 
 const Dashboard = () => {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    // Fetch data from the API route when the component mounts
+    fetch("@/api/wrong.ts")
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching the data", error);
+      });
+  }, []);
+
+  // To display the fetched data (for debugging purposes)
+  console.log(data);
+
+  // ... rest of your component
   const mediumScreens = useMediaQuery("(min-width:1200px)");
   return (
     <Box
@@ -34,7 +53,7 @@ const Dashboard = () => {
     >
       <Row1 />
       <Row2 />
-      <Row3 /> 
+      <Row3 />
     </Box>
   );
 };

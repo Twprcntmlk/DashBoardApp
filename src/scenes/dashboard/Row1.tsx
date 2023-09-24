@@ -1,6 +1,6 @@
 import DashBoardBox from "@/components/DashBoardBox";
 import BoxHeaderBox from "@/components/BoxHeaderBox";
-import { useGetKpisQuery } from "@/state/api";
+// import { useGetKpisQuery } from "@/state/api";
 import { useTheme } from "@mui/material";
 import { useMemo } from "react";
 import {
@@ -17,6 +17,9 @@ import {
   Tooltip,
   Area,
 } from "recharts";
+import { getKpis } from "@/server/routes/kpi";
+import handler from "@/api/wrong";
+
 
 type RevenueExpensesItem = {
   name: string;
@@ -25,68 +28,67 @@ type RevenueExpensesItem = {
 };
 
 const Row1 = () => {
-  const { palette } = useTheme();
-  const { data } = useGetKpisQuery();
+  // const { palette } = useTheme();
+  const data = handler;
+  console.log(data);
+  // const revenue = useMemo(() => {
+  //   return (
+  //     data &&
+  //     data[0].monthlyData.map(({ month, revenue }) => {
+  //       return {
+  //         name:
+  //           month.substring(0, 3).charAt(0).toUpperCase() +
+  //           month.substring(0, 3).slice(1),
+  //         revenue: revenue,
+  //       };
+  //     })
+  //   );
+  // }, [data]);
 
-  const revenue = useMemo(() => {
-    return (
-      data &&
-      data[0].monthlyData.map(({ month, revenue }) => {
-        return {
-          name:
-            month.substring(0, 3).charAt(0).toUpperCase() +
-            month.substring(0, 3).slice(1),
-          revenue: revenue,
-        };
-      })
-    );
-  }, [data]);
+  // const revenueExpenses: RevenueExpensesItem[] | undefined = useMemo(() => {
+  //   return (
+  //     data &&
+  //     data[0].monthlyData.map(({ month, revenue, expenses }) => {
+  //       return {
+  //         name:
+  //           month.substring(0, 3).charAt(0).toUpperCase() +
+  //           month.substring(0, 3).slice(1),
+  //         revenue: revenue,
+  //         expenses: expenses,
+  //       };
+  //     })
+  //   );
+  // }, [data]);
 
-  const revenueExpenses: RevenueExpensesItem[] | undefined = useMemo(() => {
-    return (
-      data &&
-      data[0].monthlyData.map(({ month, revenue, expenses }) => {
-        return {
-          name:
-            month.substring(0, 3).charAt(0).toUpperCase() +
-            month.substring(0, 3).slice(1),
-          revenue: revenue,
-          expenses: expenses,
-        };
-      })
-    );
-  }, [data]);
+  // const RevAndExpChange = (revenueExpenses?: RevenueExpensesItem[]) => {
+  //   if (!revenueExpenses || !revenueExpenses[11]) return "0%";
 
-  const RevAndExpChange = (revenueExpenses?: RevenueExpensesItem[]) => {
-    if (!revenueExpenses || !revenueExpenses[11]) return "0%";
+  //   const { revenue, expenses } = revenueExpenses[11];
+  //   const denominator = revenue + expenses;
+  //   if (denominator === 0) return "0%"; // Guard against division by zero
 
-    const { revenue, expenses } = revenueExpenses[11];
-    const denominator = revenue + expenses;
-    if (denominator === 0) return "0%"; // Guard against division by zero
+  //   const percentage = ((revenue - expenses) / denominator) * 100;
+  //   return `${percentage >= 0 ? "+" : "-"}${Math.abs(percentage).toFixed(2)}%`;
+  // };
 
-    const percentage = ((revenue - expenses) / denominator) * 100;
-    return `${percentage >= 0 ? "+" : "-"}${Math.abs(percentage).toFixed(2)}%`;
-  };
-
-  console.log();
-  const revenueProfit = useMemo(() => {
-    return (
-      data &&
-      data[0].monthlyData.map(({ month, revenue, expenses }) => {
-        return {
-          name:
-            month.substring(0, 3).charAt(0).toUpperCase() +
-            month.substring(0, 3).slice(1),
-          revenue: revenue,
-          profit: (revenue - expenses).toFixed(2),
-        };
-      })
-    );
-  }, [data]);
+  // const revenueProfit = useMemo(() => {
+  //   return (
+  //     data &&
+  //     data[0].monthlyData.map(({ month, revenue, expenses }) => {
+  //       return {
+  //         name:
+  //           month.substring(0, 3).charAt(0).toUpperCase() +
+  //           month.substring(0, 3).slice(1),
+  //         revenue: revenue,
+  //         profit: (revenue - expenses).toFixed(2),
+  //       };
+  //     })
+  //   );
+  // }, [data]);
 
   return (
     <>
-      <DashBoardBox gridArea="a">
+      {/* <DashBoardBox gridArea="a">
         <BoxHeaderBox
           title="Revenue and Expenses"
           subtitle="top line represents revenue, bottom line represents expenses"
@@ -268,7 +270,7 @@ const Row1 = () => {
             <Bar dataKey="revenue" fill="url(#colorRevenue)" />
           </BarChart>
         </ResponsiveContainer>
-      </DashBoardBox>
+      </DashBoardBox> */}
     </>
   );
 };

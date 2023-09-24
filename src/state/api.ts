@@ -3,7 +3,7 @@ import {
   GetKpisResponse,
   GetProductsResponse,
   GetTransactionsResponse,
-} from "./types";
+} from "../server/routes/types";
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:1337/" }),
